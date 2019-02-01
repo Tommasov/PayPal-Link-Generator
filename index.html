@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <title>Paypal Link Generator</title>
+    <title>Paypal payment link generator by Tommaso Vietina</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
@@ -18,23 +18,23 @@
     <div class="row">
 
         <div class="col-12">
-            <h1>PayPal Link Generator</h1>
+            <h1>PayPal payment link generator</h1>
         </div>
-        <div class="col-6">
+
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="paypal_email">Account email</label>
+                        <label for="paypal_email">Your paypal account email address</label>
                         <input type="email" class="form-control" id="paypal_email" name="paypal_email"
-                               aria-describedby="emailHelp"
-                               placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">Insert the Paypal Account email
+                               aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">Insert the your Paypal Account email address
                         </small>
                     </div>
                     <div class="form-group">
                         <label for="amount">Amount</label>
-                        <input type="number" class="form-control" id="amount" name="amount" aria-describedby="amountHelp"
-                               placeholder="Enter amount">
+                        <input type="number" class="form-control" id="amount" name="amount"
+                               aria-describedby="amountHelp">
                         <small id="amountHelp" class="form-text text-muted">Insert the amount of money you need
                             to get
                         </small>
@@ -43,7 +43,6 @@
                     <div class="form-group">
                         <label for="currency">Currency</label>
                         <select class="form-control" id="currency" name="currency">
-
                             <option value="">Select Currency</option>
                             <option value="AUD">Australian Dollar (AUD)</option>
                             <option value="BRL">Brazilian Real (BRL)</option>
@@ -75,8 +74,7 @@
                     <div class="form-group">
                         <label for="description">Description</label>
                         <input type="text" class="form-control" id="description" name="description"
-                               aria-describedby="decsriptionHelp"
-                               placeholder="Enter a description">
+                               aria-describedby="decsriptionHelp">
                         <small id="decsriptionHelp" class="form-text text-muted">Insert a message for the recipient
                         </small>
                     </div>
@@ -100,6 +98,12 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-12 text-center" style="font-size: 11px; padding-top: 10px;">
+            <p>Tommaso Vietina 2019 - <a href="http://www.tommasovietina.it">tommasovietina.it</a> | Fork this on <a
+                    href="https://github.com/Tommasov/PayPal-Link-Generator">github</a> and improve it.</p>
+        </div>
+    </div>
 </div>
 <script>
     let paypal_email, amount, description, currency;
@@ -120,9 +124,7 @@
         }
 
         jQuery("#result").html(code);
-
     });
-
 
 </script>
 </body>
