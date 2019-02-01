@@ -7,6 +7,8 @@
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
           crossorigin="anonymous">
     <!--suppress JSUnresolvedLibraryURL -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <!--suppress JSUnresolvedLibraryURL -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
             integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
             crossorigin="anonymous"></script>
@@ -16,19 +18,112 @@
     <div class="row">
 
         <div class="col-12">
-            <h1> Generatore di link Paypal </h1>
+            <h1>PayPal Link Generator</h1>
         </div>
-        <div class="col-12">
+        <div class="col-6">
             <div class="card">
                 <div class="card-body">
+                    <div class="form-group">
+                        <label for="paypal_email">Account email</label>
+                        <input type="email" class="form-control" id="paypal_email" name="paypal_email"
+                               aria-describedby="emailHelp"
+                               placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">Insert the Paypal Account email
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" class="form-control" id="amount" name="amount" aria-describedby="amountHelp"
+                               placeholder="Enter amount">
+                        <small id="amountHelp" class="form-text text-muted">Insert the amount of money you need
+                            to get
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currency">Currency</label>
+                        <select class="form-control" id="currency" name="currency">
+
+                            <option value="">Select Currency</option>
+                            <option value="AUD">Australian Dollar (AUD)</option>
+                            <option value="BRL">Brazilian Real (BRL)</option>
+                            <option value="CAD">Canadian Dollar (CAD)</option>
+                            <option value="CZK">Czech Koruna (CZK)</option>
+                            <option value="DKK">Danish Krone (DKK)</option>
+                            <option value="EUR" selected>Euro (EUR)</option>
+                            <option value="HKD">Hong Kong Dollar (HKD)</option>
+                            <option value="HUF">Hungarian Forint (HUF)</option>
+                            <option value="ILS">Israeli New Sheqel (ILS)</option>
+                            <option value="JPY">Japanese Yen (JPY)</option>
+                            <option value="MYR">Malaysian Ringgit (MYR)</option>
+                            <option value="MXN">Mexican Peso (MXN)</option>
+                            <option value="NOK">Norwegian Krone (NOK)</option>
+                            <option value="NZD">New Zealand Dollar (NZD)</option>
+                            <option value="PHP">Philippine Peso (PHP)</option>
+                            <option value="PLN">Polish Zloty (PLN)</option>
+                            <option value="GBP">Pound Sterling (GBP)</option>
+                            <option value="SGD">Singapore Dollar (SGD)</option>
+                            <option value="SEK">Swedish Krona (SEK)</option>
+                            <option value="CHF">Swiss Franc (CHF)</option>
+                            <option value="TWD">Taiwan New Dollar (TWD)</option>
+                            <option value="THB">Thai Baht (THB)</option>
+                            <option value="TRY">Turkish Lira (TRY)</option>
+                            <option value="USD">U.S. Dollar (USD)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" name="description"
+                               aria-describedby="decsriptionHelp"
+                               placeholder="Enter a description">
+                        <small id="decsriptionHelp" class="form-text text-muted">Insert a message for the recipient
+                        </small>
+                    </div>
+
+
+                    <a href="#" class="btn btn-block btn-lg btn-primary" id="generate">Generate now</a>
 
                 </div>
             </div>
-
         </div>
-
-
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div id="result" style="
+                    font-family: 'Courier New',sans-serif;
+                    color:magenta;">Your code will be printed here
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<script>
+    let paypal_email, amount, description, currency;
+    let code;
+
+    jQuery("#generate").click(function () {
+
+        paypal_email = jQuery("#paypal_email").val();
+        amount       = jQuery("#amount").val();
+        description  = jQuery("#description").val();
+        currency     = jQuery("#currency").val();
+
+        if (paypal_email === '' || amount === '' || description === '') {
+            code = "All fields are required. Sorry :)";
+        }
+        else {
+            code = 'https://www.paypal.com/cgi-bin/webscr?business=' + paypal_email + '&amp;cmd=_xclick&amp;currency_code=' + currency + '&amp;amount=' + amount + '&amp;item_name=' + description;
+        }
+
+        jQuery("#result").html(code);
+
+    });
+
+
+</script>
 </body>
 </html>
